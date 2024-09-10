@@ -1,10 +1,20 @@
-# Android device tree for vivo vivo 1808 (PD1732F_EX)
+# TWRP device tree for Vivo Y81 (1808)
 
-```
-#
-# Copyright (C) 2024 The Android Open Source Project
-# Copyright (C) 2024 SebaUbuntu's TWRP device tree generator
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-```
+## Device specification
+
+Basic   | Spec Sheet
+-------:|:------------------------
+CPU     | Helio P22 (8х2Ггц, Cortex-A53)
+CHIPSET | MediaTek (MT6762)
+GPU     | PowerVR GE8320
+Memory  | 3GB
+Shipped Android Version | 8.1 Oreo (Funtouch OS)
+Storage | 32GB
+Battery | Li-Po 3260 mAh
+Dimensions | 155 x 75 x 7.77 mm
+Display | 720 x 1520 pixels, 19:9 ratio (~270 ppi density)
+Rear Camera  | 13 MP
+Front Camera | 5 MP
+
+Specifications in detail
+See [We look there](https://m.gsmarena.com/vivo_y81i-9404.php)
