@@ -6,7 +6,7 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_PD1732F_EX.mk
+    $(LOCAL_DIR)/omni_1808.mk
 
 
-COMMON_LUNCH_CHOICES := omni_PD1732F_EX-eng
+COMMON_LUNCH_CHOICES := omni_1808-eng
