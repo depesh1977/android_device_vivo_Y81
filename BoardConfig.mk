@@ -2,7 +2,7 @@
 # Copyright (C) 2024 The Android Open Source Project
 #
 
-DEVICE_PATH := device/vivo/Y81
+DEVICE_PATH := device/vivo/PD1732F_EX
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
