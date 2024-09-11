@@ -7,6 +7,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE),PD1732F_EX)
+ifeq ($(TARGET_DEVICE),Y81)
 include $(call all-subdir-makefiles,$(LOCAL_PATH))
 endif
