@@ -5,6 +5,4 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-add_lunch_combo omni_PD1732F_EX-user
-add_lunch_combo omni_PD1732F_EX-userdebug
-add_lunch_combo omni_PD1732F_EX-eng
+add_lunch_combo omni_Y81-eng
