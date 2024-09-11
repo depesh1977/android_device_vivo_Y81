@@ -22,6 +22,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a53
 
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
+TARGET_BOARD_SUFFIX := _64
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := k62v1_64_bsp
@@ -83,14 +84,13 @@ VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
 # TWRP Configuration
-TW_THEME := portrait_hdpi
-TW_EXTRA_LANGUAGES := true
+TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 #TW_USE_TOOLBOX := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_DISABLE_TRIPLE_BUFFERING := false
@@ -100,6 +100,8 @@ TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness
 TW_THEME := portrait_hdpi
 DEVICE_SCREEN_WIDTH := 720
 DEVICE_SCREEN_HEIGHT := 1520
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 100
 
 # Display
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
@@ -111,6 +113,7 @@ TW_EXCLUDE_TWRPAPP := true
 
 # Debug
 TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := false
@@ -127,3 +130,7 @@ TW_NO_USB_STORAGE := false
 
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_DEVICE_VERSION := VIVO 1808 - Who Im
+
+# AVB - Android Verified Boot / dm-verity
+BOARD_AVB_ENABLE := true
+BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
