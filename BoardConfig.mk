@@ -114,7 +114,6 @@ DEVICE_SCREEN_HEIGHT := 1520
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_NO_SCREEN_BLANK := true
 TW_NO_SCREEN_TIMEOUT := true
-TW_NO_BATT_PERCENT := false
 
 # Excludes
 TW_EXCLUDE_TWRPAPP := true
