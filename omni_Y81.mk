@@ -12,9 +12,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
 
-# Inherit from PD1732F_EX device
-$(call inherit-product, device/vivo/Y81/device.mk)
-
 PRODUCT_DEVICE := Y81
 PRODUCT_NAME := omni_Y81
 PRODUCT_BRAND := vivo
