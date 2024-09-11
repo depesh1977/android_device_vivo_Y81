@@ -1,8 +1,10 @@
-ro.treble.enabled=true
-ro.secure=1
-security.perf_harden=1
-ro.adb.secure=1
+ro.vivo.product.platform=MTK6765
+ro.board.platform=mt6765
+ro.mediatek.platform=MT6765
+
+ro.adb.secure=0
 ro.allow.mock.location=0
 ro.debuggable=1
+ro.secure=0
 
 
