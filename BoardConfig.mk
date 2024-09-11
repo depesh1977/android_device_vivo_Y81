@@ -70,7 +70,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 TARGET_BOARD_PLATFORM := mt6765
 
 # system.prop
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+# TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
