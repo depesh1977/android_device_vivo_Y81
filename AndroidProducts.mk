@@ -5,10 +5,5 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_PD1732F_EX.mk
+PRODUCT_MAKEFILES := $(LOCAL_DIR)/omni_Y81.mk
 
-COMMON_LUNCH_CHOICES := \
-    omni_PD1732F_EX-user \
-    omni_PD1732F_EX-userdebug \
-    omni_PD1732F_EX-eng
