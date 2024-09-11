@@ -18,3 +18,4 @@ Front Camera | 5 MP
 
 Specifications in detail
 See [We look there](https://m.gsmarena.com/vivo_y81i-9404.php)
+![Vivo Y81 1808](https://fdn2.gsmarena.com/vv/pics/vivo/vivo-y81-1.jpg)
