@@ -67,6 +67,11 @@ TARGET_BOARD_PLATFORM := mt6765
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
 #TARGET_USERIMAGES_USE_F2FS := true
+RECOVERY_SDCARD_ON_DATA := true
+
+# System as root
+#BOARD_BUILD_SYSTEM_ROOT_IMAGE := 
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2021-08-01
@@ -85,14 +90,13 @@ TW_INPUT_BLACKLIST := "hbtp_vm"
 #TW_USE_TOOLBOX := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
-RECOVERY_SDCARD_ON_DATA := true
-BOARD_SUPPRESS_SECURE_ERASE := true
 BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
 
 # Resolution
+TW_THEME := portrait_hdpi
 DEVICE_SCREEN_WIDTH := 720
 DEVICE_SCREEN_HEIGHT := 1520
 
@@ -107,6 +111,9 @@ TW_EXCLUDE_TWRPAPP := true
 # Debug
 TWRP_INCLUDE_LOGCAT := true
 
+# Crypto
+TW_INCLUDE_CRYPTO := false
+
 # Storage
 TW_HAS_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
@@ -118,3 +125,4 @@ TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_NO_USB_STORAGE := false
 
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
+TW_DEVICE_VERSION := VIVO 1808 - Who Im
