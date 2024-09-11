@@ -5,6 +5,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := $(LOCAL_DIR)/omni_Y81.mk
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/omni_Y81.mk
 
 
