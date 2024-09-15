@@ -118,13 +118,11 @@ TW_EXCLUDE_TWRPAPP := true
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-# Storage
-TW_HAS_MTP := true
-TW_MTP_DEVICE := /dev/mtp_usb
-#
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
 
 # Storage
+TW_HAS_MTP := true
+TW_MTP_DEVICE := /dev/mtp_usb
 TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
