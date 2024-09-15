@@ -23,10 +23,7 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
-TARGET_SUPPORTS_64_BIT_APPS := true
-TARGET_IS_64_BIT := true
 
 # MTK
 BOARD_USES_MTK_HARDWARE := true
@@ -101,7 +98,7 @@ TW_EXCLUDE_DEFAULT_USB_INIT := true
 #TW_INCLUDE_NTFS_3G := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-#TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 TW_NO_SCREEN_BLANK_ON_BOOT := true
 TW_NO_SCREEN_BLANK := true
