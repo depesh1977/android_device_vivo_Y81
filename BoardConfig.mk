@@ -116,3 +116,4 @@ TWRP_INCLUDE_LOGCAT := true
 TW_HAS_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
 #
+TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
