@@ -1,3 +1,4 @@
+#mount point    fstype      device                      device2                 flags
 /system               ext4     /dev/block/platform/bootdevice/by-name/system        flags=display=system;backup=1;flashimg=1
 /system_image 	      emmc	   /dev/block/platform/bootdevice/by-name/system        flags=display=system;backup=1;flashimg=1
 /cust                 ext4     /dev/block/platform/bootdevice/by-name/cust          flags=display=cust;backup=1;flashimg=1
