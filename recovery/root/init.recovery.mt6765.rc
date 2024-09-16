@@ -1,18 +1,7 @@
 ### NOTE ###
-# keymaster-3-0, gatekeeper-1-0, keymaster_attestation-1-1
 
 import /init.recovery.vivo.rc
 import /trustonic.rc
-
-on property:ro.mtk_emmc_support=1
-    # Support A/B feature for emmc boot region
-    symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
-    symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
-
-on property:ro.mtk_ufs_booting=1
-    # Support A/B feature for ufs boot region
-    symlink /dev/block/sda /dev/block/platform/bootdevice/by-name/preloader_a
-    symlink /dev/block/sdb /dev/block/platform/bootdevice/by-name/preloader_b
 
 on fs
     install_keyring
@@ -56,23 +45,20 @@ service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     disabled
     seclabel u:r:recovery:s0
 
-on boot
-    setprop sys.usb.config adb
-
 on init
     start hwservicemanager
-
-on post-fs
-    start modulesdriver
-
-service modulesdriver /sbin/modulesdriver.sh
-    oneshot
-    disabled
-    user root
-    group root
-    seclabel u:r:recovery:s0
 
 on property:ro.crypto.type=file
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
+
+on property:ro.mtk_emmc_support=1
+    # Support A/B feature for emmc boot region
+    symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
+    symlink /dev/block/mmcblk0boot1 /dev/block/platform/bootdevice/by-name/preloader_b
+
+on property:ro.mtk_ufs_booting=1
+    # Support A/B feature for ufs boot region
+    symlink /dev/block/sda /dev/block/platform/bootdevice/by-name/preloader_a
+    symlink /dev/block/sdb /dev/block/platform/bootdevice/by-name/preloader_b
