@@ -2,6 +2,7 @@
 # keymaster-3-0, gatekeeper-1-0, keymaster_attestation-1-1
 
 import /init.recovery.vivo.rc
+import /trustonic.rc
 
 on property:ro.mtk_emmc_support=1
     # Support A/B feature for emmc boot region
