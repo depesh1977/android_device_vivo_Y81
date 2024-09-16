@@ -104,12 +104,9 @@ TARGET_USES_MKE2FS := true
 TW_DEFAULT_LANGUAGE := ru
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
-# Decryption
+# Crypto
 TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/bootdevice/by-name/userdata"
-TW_CRYPTO_MNT_POINT := "/data"
-TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,noauto_da_alloc"
+TW_INCLUDE_FBE := true
 
 # Excludes
 TW_EXCLUDE_TWRPAPP := true
@@ -123,7 +120,3 @@ TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
 # Storage
 TW_HAS_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
-TW_INTERNAL_STORAGE_PATH := "/data/media/0"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
