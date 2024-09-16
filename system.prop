@@ -1,6 +1,15 @@
+ro.mediatek.platform=MT6765
 ro.secure=1
+# ADB
 ro.adb.secure=1
+# USB
 ro.allow.mock.location=0
+ro.sys.usb.storage.type=mtp
 ro.debuggable=1
+# TEE & Gatekeeper & Keymaster
+ro.mtk_tee_gp_support=1
+ro.hardware.kmsetkey=trustonic
+ro.mtk_trustonic_tee_support=1
+ro.mtk_f2fs_enable=0
 
 
