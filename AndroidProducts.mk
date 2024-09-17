@@ -6,6 +6,6 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_Y81.mk
+    $(LOCAL_DIR)/omni_PD1732F_EX.mk
 
 
