@@ -29,10 +29,7 @@ TARGET_USES_64_BIT_BINDER := true
 BOARD_USES_MTK_HARDWARE := true
 
 # Bootloader
-TARGET_BOOTLOADER_BOARD_NAME := k62v1_64_bsp
-
-# Assert
-TARGET_OTA_ASSERT_DEVICE := Y81,1808,k62v1_64_bsp
+TARGET_BOOTLOADER_BOARD_NAME := PD1732F_EX
 
 # Display
 TARGET_SCREEN_DENSITY := 320
@@ -77,7 +74,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # system.prop
-TARGET_SYSTEM_PROP := $$(LOCAL_PATH)/system.prop
+TARGET_SYSTEM_PROP := $$(DEVICE_PATH)/system.prop
 TARGET_RECOVERY_INITRC := $(LOCAL_PATH)/recovery/root/init.recovery.mt6765.rc
 
 # Hack: prevent anti rollback
