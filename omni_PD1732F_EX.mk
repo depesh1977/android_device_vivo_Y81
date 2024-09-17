@@ -18,7 +18,7 @@ $(call inherit-product, device/vivo/PD1732F_EX/device.mk)
 PRODUCT_DEVICE := PD1732F_EX
 PRODUCT_NAME := omni_PD1732F_EX
 PRODUCT_BRAND := vivo
-PRODUCT_MODEL := PD1732F_EX
+PRODUCT_MODEL := vivo 1808
 PRODUCT_MANUFACTURER := vivo
 
 PRODUCT_GMS_CLIENTID_BASE := android-vivo-rev1
