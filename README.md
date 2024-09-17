@@ -8,7 +8,7 @@ CPU     | Helio P22 (8х2Ггц, Cortex-A53)
 CHIPSET | MediaTek (MT6762)
 GPU     | PowerVR GE8320
 Memory  | 3GB
-Shipped Android Version | 8.1 Oreo (Funtouch OS)
+Shipped Android Version | 8.1 Oreo (Funtouch OS 4)
 Storage | 32GB
 Battery | Li-Po 3260 mAh
 Dimensions | 155 x 75 x 7.77 mm
