@@ -123,7 +123,7 @@ TW_CRYPTO_MNT_POINT := "/data"
 TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,barrier=0,data=ordered"
 
 # Excludes
-TW_EXCLUDE_TWRPAPP := true
+#TW_EXCLUDE_TWRPAPP := true
 
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
