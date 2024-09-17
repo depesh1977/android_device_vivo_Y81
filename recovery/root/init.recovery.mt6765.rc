@@ -13,13 +13,9 @@ chmod 0771 /vendor/persist
 # We restorecon /vendor/persist to set SEPolicy label.
 restorecon /vendor/persist
 
-	# Create /data/key_provisioning dir and get proper encryption policy installed
-    # Key Installation
-    mkdir /data/key_provisioning 0771 system system
+# Key Installation
+mkdir /data/key_provisioning 0771 system system
 	
-    write /proc/bootprof "MOBICORE: Starting mcDriverDaemon"
-    start mobicore
-
 # MobiCore Daemon Paths
 write /proc/bootprof "MOBICORE: export MC_AUTH_TOKEN_PATH /efs"
 export MC_AUTH_TOKEN_PATH /efs
@@ -77,7 +73,8 @@ on property:hwservicemanager.ready=true
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
-
+write /proc/bootprof "MOBICORE: Starting mcDriverDaemon"
+  
 on property:ro.crypto.state=unsupported
     stop mobicore
     stop keymaster-3-0
