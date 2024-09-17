@@ -1,6 +1,6 @@
 ### NOTE ###
 
-import /trustkernel.rc
+import /trustonic.rc
 
 on init
     mkdir /mnt/vendor/persist
