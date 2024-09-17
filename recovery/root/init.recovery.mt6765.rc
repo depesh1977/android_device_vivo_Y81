@@ -4,6 +4,8 @@ import /trustonic.rc
 on init
     mkdir /mnt/vendor/persist
     mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
+    symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.${ro.hardware}.so
+    symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.${ro.hardware}.so
 
 #create mountpoint for /vendor/persist partition 
 mkdir /vendor/persist 0771 system system
