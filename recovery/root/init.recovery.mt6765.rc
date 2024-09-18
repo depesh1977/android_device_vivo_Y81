@@ -26,7 +26,7 @@ on property:ro.mtk_ufs_booting=1
   on fs
        install_keyring
 
-   service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+   service mtk.plpath.utils.link /sbin/mtk_plpath_utils
        class main
        user root
        group root system
@@ -34,26 +34,26 @@ on property:ro.mtk_ufs_booting=1
        oneshot
        seclabel u:r:recovery:s0
 
-   service keystore_auth /system/bin/keystore_auth
+   service keystore_auth /sbin/keystore_auth
        oneshot
        user system
        group root
        disabled
        seclabel u:r:recovery:s0
 
-   service keystore /system/bin/keystore /tmp/misc/keystore
+   service keystore /sbin/keystore /tmp/misc/keystore
        user root
        group root drmrpc readproc log
        disabled
        seclabel u:r:recovery:s0
 
-   service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+   service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
        user root
        group root
        disabled
        seclabel u:r:recovery:s0
 
-   service keymaster-4-0 /system/bin/android.hardware.keymaster@3.0-service
+   service keymaster-3-0 sbin/android.hardware.keymaster@3.0-service
        user root
        group root drmrpc
        disabled
