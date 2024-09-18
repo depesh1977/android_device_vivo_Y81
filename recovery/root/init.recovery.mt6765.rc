@@ -25,14 +25,6 @@ on property:ro.mtk_ufs_booting=1
   on fs
        install_keyring
 
-   service mtk.plpath.utils.link /sbin/mtk_plpath_utils
-       class main
-       user root
-       group root system
-       disabled
-       oneshot
-       seclabel u:r:recovery:s0
-
    service keystore_auth /sbin/keystore_auth
        oneshot
        user system
@@ -115,8 +107,5 @@ service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1
        stop keymaster-3-0
        stop attestation-1-1
 
-   on boot
-       start boot-hal-1-2
-       start health-hal-2-1
 
 
