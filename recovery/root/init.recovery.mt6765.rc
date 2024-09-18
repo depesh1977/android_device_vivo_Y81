@@ -1,5 +1,4 @@
 ### NOTE ###
-   import /trustonic.rc
 
    on init
        symlink /dev/block/platform/bootdevice /dev/block/bootdevice
