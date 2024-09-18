@@ -1,6 +1,5 @@
 ### NOTE ###
    import /trustonic.rc
-   import /init.recovery.vivo.rc
 
    on init
        symlink /dev/block/platform/bootdevice /dev/block/bootdevice
