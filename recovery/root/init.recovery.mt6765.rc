@@ -1,5 +1,14 @@
 ### NOTE ###
 
+   on init
+       symlink /dev/block/platform/bootdevice /dev/block/bootdevice
+       export LD_LIBRARY_PATH /system/lib:/vendor/lib:/vendor/lib/hw:/system/lib/hw
+
+   on fs
+       mkdir /mnt/vendor 0700 root root
+       mkdir /mnt/vendor/persist 0700 root root
+       mount ext4 /dev/block/by-name/persist /mnt/vendor/persist
+
 on property:ro.mtk_emmc_support=1
     # Support A/B feature for emmc boot region
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
@@ -13,47 +22,42 @@ on property:ro.mtk_ufs_booting=1
     symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.${ro.hardware}.so
     symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.${ro.hardware}.so
 
-on fs
-    install_keyring
+  on fs
+       install_keyring
 
-service hwservicemanager /sbin/hwservicemanager
-    user root
-    group root
-    disabled
-    onrestart setprop hwservicemanager.ready false
-    seclabel u:r:recovery:s0
+   service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+       class main
+       user root
+       group root system
+       disabled
+       oneshot
+       seclabel u:r:recovery:s0
 
-service servicemanager /sbin/servicemanager
-    user root
-    group root readproc
-    disabled
-    seclabel u:r:recovery:s0
+   service keystore_auth /system/bin/keystore_auth
+       oneshot
+       user system
+       group root
+       disabled
+       seclabel u:r:recovery:s0
 
-service keystore_auth /sbin/keystore_auth
-    oneshot
-    user system
-    group root
-    disabled
-    seclabel u:r:recovery:s0
+   service keystore /system/bin/keystore /tmp/misc/keystore
+       user root
+       group root drmrpc readproc log
+       disabled
+       seclabel u:r:recovery:s0
 
-# keystore is started and stopped on demand by TWRP
-service keystore /sbin/keystore /tmp/misc/keystore
-    user root
-    group root drmrpc readproc
-    disabled
-    seclabel u:r:recovery:s0
+   service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+       user root
+       group root
+       disabled
+       seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
+   service keymaster-4-0 /system/bin/android.hardware.keymaster@3.0-service
+       user root
+       group root drmrpc
+       disabled
+       oneshot
+       seclabel u:r:recovery:s0
 
 service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
     interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
@@ -63,31 +67,40 @@ service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1
     disabled
     seclabel u:r:recovery:s0
 
- service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/persist/mcRegistry \
-         -r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/070b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/020b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/05070000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/030b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
-         -r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin
-     user root
-     group root
-     disabled
-     seclabel u:r:recovery:s0
+   on property:vendor.sys.listener.registered=true
+       start mobicore
+       start gatekeeper-1-0
+       start keymaster-3-0
+       start attestation-1-1
 
-on boot
-    setprop sys.usb.config adb
+   on property:hwservicemanager.ready=true
+       write /proc/bootprof "MOBICORE: create /data/vendor/mcRegistry ++ (FBE encrypted)"
+       start mobicore
+       write /proc/bootprof "MOBICORE: create /data/vendor/mcRegistry -- (FBE encrypted)"
+       start gatekeeper-1-0
+       start keymaster-3-0
+       start attestation-1-1
 
-on init
-    start hwservicemanager
+   on property:ro.crypto.state=unsupported
+       stop mobicore
+       stop gatekeeper-1-0
+       stop keymaster-3-0
+       stop attestation-1-1
 
-on property:ro.crypto.type=file
-    start keymaster-3-0
-    start gatekeeper-1-0
-    start servicemanager
+   on property:ro.crypto.state=unencrypted
+       stop mobicore
+       stop gatekeeper-1-0
+       stop keymaster-3-0
+       stop attestation-1-1
+
+   on property:twrp.decrypt.done=true
+       stop mobicore
+       stop gatekeeper-1-0
+       stop keymaster-3-0
+       stop attestation-1-1
+
+   on boot
+       start boot-hal-1-2
+       start health-hal-2-1
 
 
