@@ -103,9 +103,12 @@ TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
-# Crypto
+# Encryption
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/bootdevice/by-name/userdata"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
 
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
