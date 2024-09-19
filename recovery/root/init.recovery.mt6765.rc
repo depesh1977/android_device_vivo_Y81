@@ -85,7 +85,6 @@ export MC_AUTH_TOKEN_PATH /efs
        start mobicore
        start gatekeeper-1-0
        start keymaster-3-0
-       start attestation-1-1
 
    on property:hwservicemanager.ready=true
        write /proc/bootprof "MOBICORE: create /data/vendor/mcRegistry ++ (FBE encrypted)"
