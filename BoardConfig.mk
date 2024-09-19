@@ -103,7 +103,7 @@ TW_DEFAULT_LANGUAGE := ru
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # Encryption
-TW_INCLUDE_CRYPTO := true
+#TW_INCLUDE_CRYPTO := true
 #TW_INCLUDE_FBE := true
 
 # TWRP Debug Flags
