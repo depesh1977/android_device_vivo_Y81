@@ -9,104 +9,51 @@ on property:ro.mtk_ufs_booting=1
     # Support A/B feature for ufs boot region
     symlink /dev/block/sda /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/sdb /dev/block/platform/bootdevice/by-name/preloader_b
-	
-	symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.${ro.hardware}.so
-    symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.${ro.hardware}.so
 
-on init
-    mkdir /mnt/vendor/persist
-    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist rw
+service hwservicemanager /sbin/hwservicemanager
+    user root
+    group root
+    disabled
+    onrestart setprop hwservicemanager.ready false
+    seclabel u:r:recovery:s0
 
+service servicemanager /sbin/servicemanager
+    user root
+    group root readproc
+    disabled
+    seclabel u:r:recovery:s0
 
+service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
 
-#create mountpoint for /vendor/persist partition 
-mkdir /vendor/persist 0771 system system
-chown system system /vendor/persist
-chmod 0771 /vendor/persist
+service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
 
-# We restorecon /vendor/persist to set SEPolicy label.
-restorecon /vendor/persist
+service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
+    class hal
+    #user root
+    #group root
+    disabled
+    seclabel u:r:recovery:s0
 
-# Key Installation
-mkdir /data/key_provisioning 0771 system system
-	
-# MobiCore Daemon Paths
-write /proc/bootprof "MOBICORE: export MC_AUTH_TOKEN_PATH /efs"
-export MC_AUTH_TOKEN_PATH /efs
+on property:crypto.ready=0
+    stop keymaster-3-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop attestation-1-1
 
-
-  on fs
-       install_keyring
-
-   service keystore_auth /sbin/keystore_auth
-       oneshot
-       user system
-       group root
-       disabled
-       seclabel u:r:recovery:s0
-
-   service keystore /sbin/keystore /tmp/misc/keystore
-       user root
-       group root drmrpc readproc log
-       disabled
-       seclabel u:r:recovery:s0
-
-   service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
-       user root
-       group root
-       disabled
-       seclabel u:r:recovery:s0
-
-   service keymaster-3-0 sbin/android.hardware.keymaster@3.0-service
-       user root
-       group root drmrpc
-       disabled
-       oneshot
-       seclabel u:r:recovery:s0
-
-
- service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/persist/mcRegistry \
-         -r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/070b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/020b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/05070000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/030b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
-         -r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin
-     user root
-     group root
-     disabled
-     seclabel u:r:recovery:s0
-
-   on property:vendor.sys.listener.registered=true
-       start mobicore
-       start gatekeeper-1-0
-       start keymaster-3-0
-
-   on property:hwservicemanager.ready=true
-       write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry ++ (FBE encrypted)"
-       start mobicore
-       write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry -- (FBE encrypted)"
-       start gatekeeper-1-0
-       start keymaster-3-0
-
-   on property:ro.crypto.state=unsupported
-       stop mobicore
-       stop gatekeeper-1-0
-       stop keymaster-3-0
-
-   on property:ro.crypto.state=unencrypted
-       stop mobicore
-       stop gatekeeper-1-0
-       stop keymaster-3-0
-
-   on property:twrp.decrypt.done=true
-       stop mobicore
-       stop gatekeeper-1-0
-       stop keymaster-3-0
+on property:vendor.sys.listeners.registered=true
+    start keymaster-3-0
+    start gatekeeper-1-0
+    start servicemanager
+    start attestation-1-1
 
 
 
