@@ -105,8 +105,8 @@ TW_NO_USB_STORAGE := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # Encryption
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
+#TW_INCLUDE_CRYPTO := true
+#TW_INCLUDE_FBE := true
 
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
