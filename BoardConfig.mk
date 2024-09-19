@@ -88,6 +88,7 @@ DEVICE_SCREEN_HEIGHT := 1520
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
 RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_USE_TOOLBOX := true
 #TW_FORCE_USE_BUSYBOX := true
@@ -110,9 +111,9 @@ TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
 # Storage
-TW_HAS_MTP := true
-TW_MTP_DEVICE := /dev/mtp_usb
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_NO_USB_STORAGE := true
+#TW_HAS_MTP := true
+#TW_MTP_DEVICE := /dev/mtp_usb
+#TW_DEFAULT_EXTERNAL_STORAGE := true
+#TW_NO_USB_STORAGE := true
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
