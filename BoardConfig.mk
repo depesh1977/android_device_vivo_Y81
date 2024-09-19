@@ -112,10 +112,4 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-# Storage
-#TW_HAS_MTP := true
-#TW_MTP_DEVICE := /dev/mtp_usb
-#TW_DEFAULT_EXTERNAL_STORAGE := true
-#TW_NO_USB_STORAGE := true
-
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
