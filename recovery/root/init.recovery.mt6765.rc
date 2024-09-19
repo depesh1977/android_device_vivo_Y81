@@ -1,5 +1,7 @@
 ### NOTE ###
 
+import /trustonic.rc
+
 on property:ro.mtk_emmc_support=1
     # Support A/B feature for emmc boot region
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
