@@ -1,15 +1,13 @@
-ro.product.board=k62v1_64_bsp
-ro.secure=0
+#ro.product.board=k62v1_64_bsp
+ro.mediatek.platform=MT6765
+#ro.secure=0
 ro.adb.secure=1
 ro.allow.mock.location=1
 persist.sys.usb.config=mtp,adb
-ro.sys.usb.bicr=no
-ro.sys.usb.charging.only=yes
-ro.sys.usb.mtp.whql.enable=0
+ro.sys.usb.storage.type=mtp
 ro.debuggable=1
 ro.mtk_tee_gp_support=1
 ro.hardware.kmsetkey=trustonic
 ro.mtk_trustonic_tee_support=1
-ro.mtk_tee_gp_support=1
 
 
