@@ -64,13 +64,6 @@ export MC_AUTH_TOKEN_PATH /efs
        oneshot
        seclabel u:r:recovery:s0
 
-service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
-    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
-    class hal
-    #user root
-    #group root
-    disabled
-    seclabel u:r:recovery:s0
 
  service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/persist/mcRegistry \
          -r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
@@ -100,25 +93,21 @@ service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1
        write /proc/bootprof "MOBICORE: create /data/vendor/mcRegistry -- (FBE encrypted)"
        start gatekeeper-1-0
        start keymaster-3-0
-       start attestation-1-1
 
    on property:ro.crypto.state=unsupported
        stop mobicore
        stop gatekeeper-1-0
        stop keymaster-3-0
-       stop attestation-1-1
 
    on property:ro.crypto.state=unencrypted
        stop mobicore
        stop gatekeeper-1-0
        stop keymaster-3-0
-       stop attestation-1-1
 
    on property:twrp.decrypt.done=true
        stop mobicore
        stop gatekeeper-1-0
        stop keymaster-3-0
-       stop attestation-1-1
 
 
 
