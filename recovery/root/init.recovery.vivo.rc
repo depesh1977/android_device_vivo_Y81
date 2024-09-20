@@ -47,6 +47,9 @@ on property:ro.mtk_ufs_booting=1
     symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.${ro.hardware}.so
     symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.${ro.hardware}.so
 
+on fs
+       install_keyring
+
 on property:recovery.service=1
     start hwservicemanager
     start gatekeeper-1-0
