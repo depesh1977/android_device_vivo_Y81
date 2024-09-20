@@ -1,4 +1,4 @@
-persist.sys.usb.config=mtp,adb
+persist.sys.usb.config=mtp
 ro.adb.secure=0
 
 
