@@ -1,8 +1,8 @@
-ro.product.board=k62v1_64_bsp
+#ro.product.board=k62v1_64_bsp
 ro.allow.mock.location=1
 persist.sys.usb.config=mtp,adb
 ro.adb.secure=0
 ro.debuggable=1
-ro.mtk_f2fs_enable=0
+#ro.mtk_f2fs_enable=0
 
 
