@@ -1,38 +1,22 @@
 on init
-    #create mountpoint for /mnt/vendor/persist partition
-    mkdir /mnt/vendor/persist 0771 system system
+    setprop sys.usb.configfs 1
+    setprop sys.usb.ffs.aio_compat 1
 
-    symlink /mnt/vendor/persist /vendor/persist
-    symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.k62v1_64_bsp.so
-    symlink /vendor/lib64/hw/libSoftGatekeeper.so   /vendor/lib64/hw/gatekeeper.default.so
-    symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.${ro.hardware}.so
-    symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.${ro.hardware}.so
-    symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.k62v1_64_bsp.so
-    symlink /vendor/lib64/hw/kmsetkey.trustonic.so /vendor/lib64/hw/kmsetkey.default.so
-    symlink /vendor/lib64/libMcClient.so /vendor/lib64/hw/libMcClient.so
-    symlink /vendor/lib64/libMcClient.so /system/lib64/libMcClient.so
+on property:ro.debuggable=0
+    # distinguish USB shoulde connect or not, i.e. CDP vs SDP
+    write /sys/class/udc/musb-hdrc/device/cmode 2
+    # set charging free due to it wait for USB activation
+    start adbd
 
-on post-fs
-    chown system system /mnt/vendor/persist
-    chmod 0771 /mnt/vendor/persist
-
-# We restorecon /mnt/vendor/persist to set SEPolicy label.
-    restorecon /mnt/vendor/persist
-
-# Create mcRegistry to store failure record
-    mkdir /mnt/vendor/persist/mcRegistry 0771 system system
-
-    write /proc/bootprof "MOBICORE: Starting mcDriverDaemon"
-    start mobicore
-
-    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry ++ (FBE encrypted)"
-    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry -- (FBE encrypted)"
-
-on post-fs-data
-# Create /data/key_provisioning dir and get proper encryption policy installed
-#Key Installation
-    mkdir /vendor/persist 0771 system system    
-    mkdir /data/key_provisioning 0771 system system
+on property:sys.usb.ffs.ready=1
+    write /config/usb_gadget/g1/UDC "none"
+    rm /config/usb_gadget/g1/configs/b.1/f1
+    rm /config/usb_gadget/g1/configs/b.1/f2
+    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "adb"
+    write /config/usb_gadget/g1/idVendor 0x18d1
+    write /config/usb_gadget/g1/idProduct 0xd001
+    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
+    write /config/usb_gadget/g1/UDC "musb-hdrc"
 
 on property:ro.mtk_emmc_support=1
     # Support A/B feature for emmc boot region
@@ -43,76 +27,5 @@ on property:ro.mtk_ufs_booting=1
     # Support A/B feature for ufs boot region
     symlink /dev/block/sda /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/sdb /dev/block/platform/bootdevice/by-name/preloader_b
-
-    symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.${ro.hardware}.so
-    symlink /vendor/lib64/hw/libMcTeeKeymaster.so /vendor/lib64/hw/keystore.${ro.hardware}.so
-
-on property:recovery.service=1
-    start hwservicemanager
-    start gatekeeper-1-0
-    start keymaster-3-0
-
-service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
-    disabled
-    user root
-    group root drmrpc
-    seclabel u:r:recovery:s0
-
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
-    disabled
-    user root
-    group root
-    seclabel u:r:recovery:s0
-
-service servicemanager /sbin/servicemanager
-    disabled
-    user root
-    seclabel u:r:recovery:s0
-
-service hwservicemanager /sbin/hwservicemanager
-    disabled
-    user root
-    onrestart setprop hwservicemanager.ready false
-    onrestart class_restart hal
-    onrestart class_restart early_hal
-    writepid /dev/cpuset/system-background/tasks
-    seclabel u:r:recovery:s0
-
-service keystore_auth /sbin/keystore_auth
-    oneshot
-    user system
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service keystore /sbin/keystore /tmp/misc/keystore
-    user root
-    group root drmrpc readproc
-    disabled
-    seclabel u:r:recovery:s0
-	
-service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/persist/mcRegistry \
-         -r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/070b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/020b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/05070000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/030b0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
-         -r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
-         -r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin
-     user root
-     group root
-     disabled
-     seclabel u:r:recovery:s0
-
-on property:hwservicemanager.ready=true
-    start servicemanager
-    start hwservicemanager
-    start keymaster-3-0
-    start gatekeeper-1-0
-
-
 
 
