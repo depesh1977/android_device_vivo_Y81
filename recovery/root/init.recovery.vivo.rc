@@ -50,11 +50,6 @@ on property:ro.mtk_ufs_booting=1
 on fs
        install_keyring
 
-on property:recovery.service=1
-    start hwservicemanager
-    start gatekeeper-1-0
-    start keymaster-3-0
-
 service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     disabled
     user root
@@ -110,8 +105,8 @@ service mobicore /vendor/bin/mcDriverDaemon --sfs-reformat --P1 /mnt/vendor/pers
      disabled
      seclabel u:r:recovery:s0
 
-on property:hwservicemanager.ready=true
+on property:recovery.service=1
     start servicemanager
     start hwservicemanager
-    start keymaster-3-0
     start gatekeeper-1-0
+    start keymaster-3-0
