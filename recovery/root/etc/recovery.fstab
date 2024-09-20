@@ -36,7 +36,7 @@
 /dev/block/platform/bootdevice/by-name/proinfo          /proinfo              emmc             defaults                                                        defaults
 
 #The database BIN, CSV, JSON, SQL
-/dev/block/platform/bootdevice/by-name/expdb /expdb emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/expdb             /expdb               emmc             defaults                                                        defaults
 
 # Seccfg for unlocking
 /dev/block/platform/bootdevice/by-name/seccfg          /seccfg              emmc                  defaults                                           defaults
@@ -48,11 +48,11 @@
 /dev/block/platform/bootdevice/by-name/sspm_2          /sspm_2             emmc                    defaults                                                           defaults
 
 # Secure Contain Protec
-/dev/block/platform/bootdevice/by-name/scp1 /scp1 emmc defaults defaults
-/dev/block/platform/bootdevice/by-name/scp2 /scp2 emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/scp1            /scp1                 emmc                defaults                                                       defaults
+/dev/block/platform/bootdevice/by-name/scp2             /scp2                emmc                defaults                                                             defaults
 
 #The fuse
-/dev/block/platform/bootdevice/by-name/efuse /efuse emmc defaults defaults
+/dev/block/platform/bootdevice/by-name/efuse            /efuse             emmc                     defaults                                                          defaults
 
 
 # MODEM
