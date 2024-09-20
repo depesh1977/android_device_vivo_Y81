@@ -93,6 +93,8 @@ PRODUCT_FULL_TREBLE := true
 # Resolution
 DEVICE_SCREEN_WIDTH := 720
 DEVICE_SCREEN_HEIGHT := 1520
+TW_MAX_BRIGHTNESS := 125
+TW_DEFAULT_BRIGHTNESS := 90
 
 
 # TWRP Configuration
@@ -118,6 +120,10 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 # Encryption
 TW_INCLUDE_CRYPTO := true
 #TW_INCLUDE_FBE := true
+
+# MTP
+TW_MTP_DEVICE := /dev/mtp_usb
+TW_HAS_MTP := true
 
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
