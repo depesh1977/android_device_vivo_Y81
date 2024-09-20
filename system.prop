@@ -2,6 +2,5 @@ ro.allow.mock.location=1
 persist.sys.usb.config=mtp,adb
 ro.adb.secure=0
 ro.debuggable=1
-ro.config.dmverity=false
 
 
