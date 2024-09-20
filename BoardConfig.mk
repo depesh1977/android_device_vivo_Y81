@@ -122,8 +122,11 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 #TW_INCLUDE_FBE := true
 
 # MTP
-TW_MTP_DEVICE := /dev/mtp_usb
-TW_HAS_MTP := true
+e
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 
 # TWRP Debug Flags
 TARGET_USES_LOGD := true
