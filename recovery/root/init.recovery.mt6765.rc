@@ -1,10 +1,9 @@
 ### NOTE ###
-
 import /trustonic.rc
 
 on init
     start hwservicemanager
-    start servicemanager
+    #start servicemanager
     symlink /sbin/libMcGatekeeper.so   /sbin/gatekeeper.${ro.product.board}.so
     symlink /sbin/libMcTeeKeymaster.so /sbin/keystore.${ro.hardware}.so
     symlink /sbin/vivotool /sbin/ping
@@ -108,14 +107,14 @@ service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1
     seclabel u:r:recovery:s0
 
 on property:crypto.ready=0
-    stop mobicore    
+    #stop mobicore    
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop attestation-1-1
 
 on property:hwservicemanager.ready=true
-    start mobicore
+    #start mobicore
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
