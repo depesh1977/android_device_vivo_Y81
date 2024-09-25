@@ -112,9 +112,9 @@ TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
 # Excludes
-#TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
 #TW_EXCLUDE_TWRP_APP := true
 
-TW_HAS_MTP := true
+#TW_HAS_MTP := true
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
