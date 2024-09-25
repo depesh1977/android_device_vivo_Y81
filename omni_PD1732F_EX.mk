@@ -13,7 +13,7 @@ $(call inherit-product, vendor/omni/config/common.mk)
 $(call inherit-product, device/vivo/PD1732F_EX/device.mk)
 
 PRODUCT_DEVICE := PD1732F_EX
-PRODUCT_NAME := twrp_PD1732F_EX
+PRODUCT_NAME := omni_PD1732F_EX
 PRODUCT_BRAND := vivo
 PRODUCT_MODEL := PD1732F_EX
 PRODUCT_MANUFACTURER := vivo
