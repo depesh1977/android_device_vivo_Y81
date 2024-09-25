@@ -28,6 +28,8 @@ TARGET_USES_64_BIT_BINDER := true
 
 # MTK
 BOARD_USES_MTK_HARDWARE := true
+BOARD_HAS_MTK_HARDWARE := true
+MTK_HARDWARE := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := PD1732F_EX 
@@ -89,26 +91,18 @@ DEVICE_SCREEN_WIDTH := 720
 DEVICE_SCREEN_HEIGHT := 1520
 
 # TWRP Configuration
-#TW_THEME := portrait_hdpi
-#TW_INPUT_BLACKLIST := "hbtp_vm"
-#RECOVERY_SDCARD_ON_DATA := true
-#BOARD_HAS_NO_REAL_SDCARD := true
+TW_THEME := portrait_hdpi
+TW_INPUT_BLACKLIST := "hbtp_vm"
+RECOVERY_SDCARD_ON_DATA := true
+BOARD_HAS_NO_REAL_SDCARD := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
-#TW_NO_SCREEN_BLANK_ON_BOOT := true
 #TW_NO_SCREEN_BLANK := true
-#BOARD_SUPPRESS_SECURE_ERASE := true
+BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-
-TW_THEME := portrait_hdpi
-TW_EXCLUDE_TWRPAPP := false
-TW_SCREEN_BLANK_ON_BOOT := true
-TW_INPUT_BLACKLIST := "hbtp_vm"
-TW_USE_TOOLBOX := true
-TW_NO_SCREEN_TIMEOUT := true
 
 # crypto
 TW_INCLUDE_CRYPTO := true
