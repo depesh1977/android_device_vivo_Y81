@@ -17,12 +17,8 @@ on init
     symlink /vendor/lib64/libMcClient.so /vendor/lib64/hw/libMcClient.so
     symlink /vendor/lib64/libMcClient.so /system/lib64/libMcClient.so
 
-on init
-    setprop sys.usb.configfs 1
-    setprop sys.usb.controller "musb-hdrc"
-    setprop sys.usb.ffs.aio_compat 0
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
-    setprop crypto.ready 1
+    mkdir /oem 0771 system system
+    mkdir /otg
 
 on post-fs
     chown system system /vendor/persist
