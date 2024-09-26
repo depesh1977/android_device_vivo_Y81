@@ -87,8 +87,8 @@ DEVICE_SCREEN_HEIGHT := 1520
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
 RECOVERY_SDCARD_ON_DATA := true
-BOARD_HAS_NO_REAL_SDCARD := true
-TW_USE_TOOLBOX := true
+#BOARD_HAS_NO_REAL_SDCARD := true
+#TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 TW_NO_SCREEN_BLANK := true
@@ -96,7 +96,8 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-#TW_OEM_BUILD := true
+TW_OEM_BUILD := true
+TW_EXCLUDE_PYTHON := true
 
 # crypto
 TW_INCLUDE_CRYPTO := true
@@ -106,7 +107,7 @@ TWRP_INCLUDE_LOGCAT := true
 
 # Excludes
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_EXCLUDE_TWRP_APP := true
+#TW_EXCLUDE_TWRP_APP := true
 
 #TW_HAS_MTP := true
 
