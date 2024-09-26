@@ -1,5 +1,4 @@
 ### NOTE ###
-import /trustonic.rc
 
 on init
     start hwservicemanager
@@ -90,15 +89,27 @@ service attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1
     disabled
     seclabel u:r:recovery:s0
 
-on property:crypto.ready=0
-    #stop mobicore    
+# Start Daemon (Registry directories should already be present)
+service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry \
+	-r /vendor/app/mcRegistry/020f0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/05120000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/070b0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/020b0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/05070000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/030b0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
+	-r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
+	-r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin \
+    seclabel u:r:recovery:s0
+
+on property:crypto.ready=0    
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop attestation-1-1
 
 on property:hwservicemanager.ready=true
-    #start mobicore
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
