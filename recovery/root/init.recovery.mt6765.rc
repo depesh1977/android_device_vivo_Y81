@@ -2,7 +2,10 @@
 
 on init
     #create mountpoint for /mnt/vendor/persist partition
-    mkdir /mnt/vendor/persist 0771 system system
+    mkdir /vendor/persist 0771 system system
+
+    symlink /dev/block/platform/bootdevice /dev/block/bootdevice
+    export LD_LIBRARY_PATH /sbin:/vendor/lib64:/vendor/lib64/hw
 
     symlink /mnt/vendor/persist /vendor/persist
     symlink /vendor/lib64/hw/libMcGatekeeper.so   /vendor/lib64/hw/gatekeeper.k62v1_64_bsp.so
@@ -14,18 +17,49 @@ on init
     symlink /vendor/lib64/libMcClient.so /vendor/lib64/hw/libMcClient.so
     symlink /vendor/lib64/libMcClient.so /system/lib64/libMcClient.so
 
+on init
+    setprop sys.usb.configfs 1
+    setprop sys.usb.controller "musb-hdrc"
+    setprop sys.usb.ffs.aio_compat 0
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
+    setprop crypto.ready 1
+
 on post-fs
-    chown system system /mnt/vendor/persist
-    chmod 0771 /mnt/vendor/persist
+    chown system system /vendor/persist
+    chmod 0771 /vendor/persist
 
     # We restorecon /mnt/vendor/persist to set SEPolicy label.
-    restorecon /mnt/vendor/persist
+    restorecon /vendor/persist
+
+    # MobiCore Daemon Paths
+    write /proc/bootprof "MOBICORE: export MC_AUTH_TOKEN_PATH /efs"
+    export MC_AUTH_TOKEN_PATH /efs
+
+on post-fs-data
+    # Create /data/key_provisioning dir and get proper encryption policy installed
+    # Key Installation
+    mkdir /data/key_provisioning 0771 system system
+
+# For META/FACTORY mode
+on property:ro.crypto.state=unencrypted
+    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry ++ (unencrypted)"
+    mkdir /data/misc/mcRegistry 0775 system system
+    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry -- (unencrypted)"
+
+# Normal mode, FBE
+on property:ro.crypto.type=file && property:ro.crypto.state=encrypted
+    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry ++ (FBE encrypted)"
+    mkdir /data/misc/mcRegistry 0775 system system
+    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry -- (FBE encrypted)"
+
+# Normal mode, FDE
+on property:vold.decrypt=trigger_restart_framework
+    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry ++ (FDE encrypted)"
+    mkdir /data/misc/mcRegistry 0775 system system
+    write /proc/bootprof "MOBICORE: create /data/misc/mcRegistry -- (FDE encrypted)"
 
     # Create mcRegistry to store failure record
-    mkdir /mnt/vendor/persist/mcRegistry 0771 system system
-
-    write /proc/bootprof "MOBICORE: Starting mcDriverDaemon"
-    start mobicore
+    mkdir /vendor/persist/mcRegistry 0771 system system
 
 on property:ro.mtk_emmc_support=1
     # Support A/B feature for emmc boot region
@@ -37,9 +71,8 @@ on property:ro.mtk_ufs_booting=1
     symlink /dev/block/sda /dev/block/platform/bootdevice/by-name/preloader_a
     symlink /dev/block/sdb /dev/block/platform/bootdevice/by-name/preloader_b
 
-# on fs
-    # install_keyring
-    # setprop crypto.ready 1
+on fs
+install_keyring
 
 service keystore_auth /system/bin/keystore_auth
     oneshot
@@ -54,7 +87,7 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service.trustonic
+service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
@@ -85,4 +118,19 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
 	-r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
 	-r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin \
     seclabel u:r:recovery:s0
+
+on property:crypto.ready=0
+    stop keymaster-3-0
+    stop gatekeeper-1-0
+    stop servicemanager
+    stop attestation-1-1
+    stop mobicore
+
+on property:hwservicemanager.ready=true
+    start keymaster-3-0
+    start gatekeeper-1-0
+    start servicemanager
+    start attestation-1-1
+    write /proc/bootprof "MOBICORE: Starting mcDriverDaemon"
+    start mobicore
 
