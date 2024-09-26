@@ -4,6 +4,8 @@ on init
     #create mountpoint for /vendor/persist partition
     mkdir /vendor/persist 0771 system system
 
+     chmod 0770 /sbin/sh
+
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
     export LD_LIBRARY_PATH /sbin:/vendor/lib64:/vendor/lib64/hw
 
