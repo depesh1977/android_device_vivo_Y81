@@ -76,7 +76,7 @@ on fs
     wait /dev/block/platform/bootdevice/by-name/cust
     mount ext4 /dev/block/platform/bootdevice/by-name/cust /oem ro
 
-on fs
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
 install_keyring
 
 service keystore_auth /sbin/keystore_auth
