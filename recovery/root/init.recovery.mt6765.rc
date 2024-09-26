@@ -6,6 +6,11 @@ on init
 
      chmod 0770 /sbin/sh
 
+    mkdir /sbin/lib
+    mkdir /sbin/lib64
+    symlink /sbin/lib  /system/lib
+    symlink /sbin/lib64 /system/lib64
+
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
     export LD_LIBRARY_PATH /sbin:/vendor/lib64:/vendor/lib64/hw
 
