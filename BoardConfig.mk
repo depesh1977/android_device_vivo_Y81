@@ -94,10 +94,12 @@ TW_NO_SCREEN_BLANK := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
+TARGET_USES_MKE2FS := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # crypto
 TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
 
 # Debug
 TARGET_USES_LOGD := true
@@ -109,8 +111,5 @@ TW_EXCLUDE_TWRP_APP := true
 
 # Storage
 TW_HAS_MTP := true
-TW_MTP_DEVICE := /dev/mtp_usb
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_NO_USB_STORAGE := true
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
