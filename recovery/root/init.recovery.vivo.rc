@@ -10,7 +10,7 @@ service mobicore /vendor/bin/mcDriverDaemon --P1 /mnt/vendor/persist/mcRegistry 
 	-r /vendor/app/mcRegistry/030c0000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/07070000000000000000000000000000.drbin \
 	-r /vendor/app/mcRegistry/5020170115e016302017012521300000.drbin \
-    -r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin
+        -r /vendor/app/mcRegistry/40188311faf343488db888ad39496f9a.drbin
     user system
     group system
     class core
