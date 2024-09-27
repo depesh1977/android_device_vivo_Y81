@@ -111,8 +111,6 @@ TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-# Excludes
-TW_EXCLUDE_DEFAULT_USB_INIT := true
 
 # Storage
 TW_HAS_MTP := true
