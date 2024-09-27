@@ -59,7 +59,7 @@ service keystore /sbin/keystore /tmp/misc/keystore
 
 service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
  interface android.hardware.keymaster@3.0::IKeymasterDevice default    
-user root
+    user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
