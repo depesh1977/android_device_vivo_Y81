@@ -59,7 +59,7 @@ on post-fs-data
 on fs
     #mount ext4 /dev/block/platform/bootdevice/by-name/vendor /vendor rw
     wait /dev/block/platform/bootdevice/by-name/cust
-    mount ext4 /dev/block/platform/bootdevice/by-name/cust /oem ro
+    mount ext4 /dev/block/platform/bootdevice/by-name/cust /oem rw
 
 service debuggerd64 /system/bin/debuggerd64
     group root readproc
