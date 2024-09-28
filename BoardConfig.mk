@@ -110,6 +110,7 @@ BOARD_HAS_NO_REAL_SDCARD := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.%d/file
+#BOARD_UMS_LUNFILE := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.%d/file
 TW_NO_SCREEN_BLANK := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTRA_LANGUAGES := false
