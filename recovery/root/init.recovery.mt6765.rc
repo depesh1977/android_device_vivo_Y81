@@ -1,5 +1,6 @@
 ### NOTE ###
 import /init.recovery.vivo.rc
+import /trustonic.rc
 
 on init
     export PATH /sbin:/system/bin
