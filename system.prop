@@ -1,7 +1,5 @@
 ro.secure=0
 ro.adb.secure=1
-ro.allow.mock.location=1
-ro.sys.usb.storage.type=mtp
 ro.debuggable=1
 
 
