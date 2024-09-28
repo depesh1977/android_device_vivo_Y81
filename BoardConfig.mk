@@ -106,8 +106,9 @@ RECOVERY_SDCARD_ON_DATA := true
 BOARD_HAS_NO_REAL_SDCARD := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun/file
-#BOARD_UMS_LUNFILE := /sys/class/android_usb/android0/f_mass_storage/lun/file
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun0/file
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.gs6/lun.%d/file
+#BOARD_UMS_LUNFILE := /sys/class/android_usb/android0/f_mass_storage/lun0/file
 TW_NO_SCREEN_BLANK := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTRA_LANGUAGES := false
@@ -119,10 +120,6 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
-
-# Statusbar icons flags 720 x 1600
-TW_STATUS_ICONS_ALIGN := center
-TW_CUSTOM_CLOCK_POS := 610
 
 # Debug
 TARGET_USES_LOGD := true
