@@ -1,14 +1,19 @@
 /system               ext4     /dev/block/platform/bootdevice/by-name/system        flags=display=System;backup=1;flashimg=1
-/system_image 	      emmc	   /dev/block/platform/bootdevice/by-name/system        flags=display=System_Image;backup=1;flashimg=1
+/system_image 	      emmc	   /dev/block/platform/bootdevice/by-name/system        flags=display=System Image;backup=1;flashimg=1
 /oem                 ext4     /dev/block/platform/bootdevice/by-name/cust          flags=display=Cust;backup=1;flashimg=1
+/oem_image           emmc     /dev/block/platform/bootdevice/by-name/cust           flags=display="Cust Image";flashimg=1;backup=1
 /vendor               ext4     /dev/block/platform/bootdevice/by-name/vendor        flags=display=Vendor;backup=1;flashimg=1
-/vendor_image         emmc     /dev/block/platform/bootdevice/by-name/vendor        flags=display=Vendor_Image;backup=1;flashimg=1
+/vendor_image         emmc     /dev/block/platform/bootdevice/by-name/vendor        flags=display=Vendor Image;backup=1;flashimg=1
 /data		              ext4	   /dev/block/platform/bootdevice/by-name/userdata      flags=display=Data;encryptable=/dev/block/platform/bootdevice/by-name/metadata
-/cache                ext4     /dev/block/platform/bootdevice/by-name/cache         flags=display=Cache;backup=1;flashimg=1
+/cache                ext4     /dev/block/platform/bootdevice/by-name/cache         flags=backup=1;wipeingui;wipeduringfactoryreset
+
+/misc                 emmc     /dev/block/platform/bootdevice/by-name/misc
+/metadata             emmc     /dev/block/platform/bootdevice/by-name/metadata
 /protect_f            ext4     /dev/block/platform/bootdevice/by-name/protect1      flags=display=Protect_f;backup=1;flashimg=1
 /protect_s            ext4     /dev/block/platform/bootdevice/by-name/protect2      flags=display=Protect_s;backup=1;flashimg=1;subpartitionof=/protect_f
 /nvdata               ext4     /dev/block/platform/bootdevice/by-name/nvdata        flags=display=NVdata;backup=1;flashimg=1
 /nvcfg                ext4     /dev/block/platform/bootdevice/by-name/nvcfg         flags=display=NVcfg;backup=1;flashimg=1
+/persist_image        emmc     /dev/block/platform/bootdevice/by-name/persist       flags=display="Persist Image";backup=1
 /persist              ext4     /dev/block/platform/bootdevice/by-name/persist       flags=display=Persist;backup=1;flashimg=1
 /frp                  emmc     /dev/block/platform/bootdevice/by-name/frp           flags=display=Frp;backup=1;flashimg=1
 /nvram                emmc     /dev/block/platform/bootdevice/by-name/nvram         flags=display=NVram;backup=1;flashimg=1
@@ -36,5 +41,5 @@
 /boot_para            emmc     /dev/block/platform/bootdevice/by-name/boot_para     flags=display=Boot_para;backup=1;flashimg=1
 /odmdtbo              emmc     /dev/block/platform/bootdevice/by-name/odmdtbo       flags=display=Odmdtbo;backup=1;flashimg=1
 
-/external_sd	auto	/dev/block/mmcblk1p1	/dev/block/mmcblk1	flags=display="External SDcard";storage;wipeingui;removable;backup=0
-/usbotg		auto    /dev/block/sda1		/dev/block/sda		flags=display="Otg";storage;removable;backup=0
+/external_sd      vfat     /dev/block/mmcblk0p1  /dev/block/mmcblk0            flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
+/usb-otg          vfat     /dev/block/sdd1  /dev/block/sdd                     flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
