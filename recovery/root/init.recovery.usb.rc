@@ -50,11 +50,11 @@ on property:sys.usb.config=mtp && property:sys.usb.configfs=1
     rm /config/usb_gadget/g1/configs/b.1/f5
 	
 #вариант1	
-    write /config/usb_gadget/g1/idVendor 0x2D95
-    write /config/usb_gadget/g1/idProduct ${sys.usb.pid}
-#вариант2
     #write /config/usb_gadget/g1/idVendor 0x2D95
-    #write /config/usb_gadget/g1/idProduct 0x6002
+    #write /config/usb_gadget/g1/idProduct ${sys.usb.pid}
+#вариант2
+     write /config/usb_gadget/g1/idVendor 0x2D95
+     write /config/usb_gadget/g1/idProduct 0x6002
 	
     symlink /config/usb_gadget/g1/functions/mtp.gs0 /config/usb_gadget/g1/configs/b.1/f1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
@@ -71,11 +71,11 @@ on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mtp,adb
     rm /config/usb_gadget/g1/configs/b.1/f5
 	
 #вариант1
-    write /config/usb_gadget/g1/idVendor 0x2D95
-    write /config/usb_gadget/g1/idProduct ${sys.usb.pid}
-#вариант2
     #write /config/usb_gadget/g1/idVendor 0x2D95
-    #write /config/usb_gadget/g1/idProduct 0x6003
+    #write /config/usb_gadget/g1/idProduct ${sys.usb.pid}
+#вариант2
+     write /config/usb_gadget/g1/idVendor 0x2D95
+     write /config/usb_gadget/g1/idProduct 0x6003
 #вариант3
     #write /config/usb_gadget/g1/idVendor 0x0E8D
     #write /config/usb_gadget/g1/idProduct ${sys.usb.pid}
