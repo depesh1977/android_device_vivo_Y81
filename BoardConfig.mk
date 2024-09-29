@@ -95,7 +95,6 @@ TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
 RECOVERY_SDCARD_ON_DATA := true
-#BOARD_HAS_NO_REAL_SDCARD := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_NO_SCREEN_BLANK := true
