@@ -22,12 +22,11 @@
 /vendor_image         emmc     /dev/block/platform/bootdevice/by-name/vendor        flags=display=Vendor Image;backup=1;flashimg=1
 
 /logo                 emmc     /dev/block/platform/bootdevice/by-name/logo          flags=display=Logo;backup=1;flashimg=1
-/misc             emmc     /dev/block/platform/bootdevice/by-name/misc
-/metadata             emmc     /dev/block/platform/bootdevice/by-name/metadata
+/metadata             ext4     /dev/block/platform/bootdevice/by-name/metadata
 /nvcfg                ext4     /dev/block/platform/bootdevice/by-name/nvcfg         flags=display=NVcfg;backup=1;flashimg=1
 /nvdata               ext4     /dev/block/platform/bootdevice/by-name/nvdata        flags=display=NVdata;backup=1;flashimg=1
 /nvram                emmc     /dev/block/platform/bootdevice/by-name/nvram         flags=display=NVram;backup=1;flashimg=1
-/para                 emmc     /dev/block/platform/bootdevice/by-name/para 
+/misc                 emmc     /dev/block/platform/bootdevice/by-name/para          flags=display=Para;backup=1;flashimg=1
 /persistent           emmc     /dev/block/platform/bootdevice/by-name/frp 
 /proinfo              emmc     /dev/block/platform/bootdevice/by-name/proinfo       flags=display=Proinfo;backup=1;flashimg=1
 /protect_f            ext4     /dev/block/platform/bootdevice/by-name/protect1      flags=backup=1
