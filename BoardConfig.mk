@@ -102,10 +102,7 @@ TW_DEFAULT_LANGUAGE := ru
 TARGET_USES_MKE2FS := true
 TW_INCLUDE_NTFS_3G := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
-TARGET_DISABLE_TRIPLE_BUFFERING := false
 TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/class/leds/lcd-backlight/brightness\"
 
 # Crypto
