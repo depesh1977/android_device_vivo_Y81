@@ -8,8 +8,6 @@ DEVICE_PATH := device/vivo/PD1732F_EX
 ALLOW_MISSING_DEPENDENCIES := true
 
 # Architecture
-BOARD_HAS_MTK_HARDWARE := true
-MTK_HARDWARE := true
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -22,9 +20,6 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 
-TARGET_CPU_ABI_LIST_64_BIT := $(TARGET_CPU_ABI)
-TARGET_CPU_ABI_LIST_32_BIT := $(TARGET_2ND_CPU_ABI),$(TARGET_2ND_CPU_ABI2)
-TARGET_CPU_ABI_LIST := $(TARGET_CPU_ABI_LIST_64_BIT),$(TARGET_CPU_ABI_LIST_32_BIT)
 TARGET_USES_64_BIT_BINDER := true
 
 # Bootloader
@@ -99,10 +94,7 @@ TW_NO_SCREEN_BLANK := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
-TARGET_USES_MKE2FS := true
-TW_INCLUDE_NTFS_3G := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto/gadget/lun%d/file
 
 # Crypto
 #TW_INCLUDE_CRYPTO := true
@@ -112,15 +104,16 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/mt_usb/musb-hdrc.0.auto
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
+# Enable CPUSets
+ENABLE_CPUSETS := true
+ENABLE_SCHEDBOOST := true
+
+# Use MKE2FS NTFS_3G to create ext4 images
+TARGET_USES_MKE2FS := true
+TW_INCLUDE_NTFS_3G := true
+
 # Storage
 TW_HAS_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
-TW_INTERNAL_STORAGE_PATH := "/data/media"
-TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
-TW_EXTERNAL_STORAGE_PATH := "/external_sd"
-TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_NO_USB_STORAGE := false
-
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
