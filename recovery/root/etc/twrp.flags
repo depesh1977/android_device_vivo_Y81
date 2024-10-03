@@ -5,40 +5,16 @@
 # Currently we dont have e2fsck compiled. So fs check would failed.
 
 # <mount_point>  <fstype>  <device>        <device2>                  <flags>
-/boot                 emmc     /dev/block/platform/bootdevice/by-name/boot          flags=backup=1;flashimg=1
-/bootloader           emmc     /dev/block/platform/bootdevice/by-name/lk            
-/bootloader2          emmc     /dev/block/platform/bootdevice/by-name/lk2           
-/cache                ext4     /dev/block/platform/bootdevice/by-name/cache         flags=backup=1;wipeingui;wipeduringfactoryreset
-/oem                 ext4     /dev/block/platform/bootdevice/by-name/cust          
-/oem_image           emmc     /dev/block/platform/bootdevice/by-name/cust           
-/data		              ext4	   /dev/block/platform/bootdevice/by-name/userdata      flags=display="Data";encryptable=/dev/block/platform/bootdevice/by-name/metadata
-/odmdtbo              emmc     /dev/block/platform/bootdevice/by-name/odmdtbo       
-/persist              ext4     /dev/block/platform/bootdevice/by-name/persist       
-/persist_image        emmc     /dev/block/platform/bootdevice/by-name/persist       
+/boot                 emmc     /dev/block/platform/bootdevice/by-name/boot          flags=backup=1;flashimg=1        
+/data		              ext4	   /dev/block/platform/bootdevice/by-name/userdata      flags=display="Data";encryptable=/dev/block/platform/bootdevice/by-name/metadata           
 /recovery             emmc     /dev/block/platform/bootdevice/by-name/recovery      flags=display="Recovery";flashimg=1
 /system               ext4     /dev/block/platform/bootdevice/by-name/system        flags=display="System";backup=1;wipeingui
 /system_image 	      emmc	   /dev/block/platform/bootdevice/by-name/system        flags=display="System Image";backup=1;flashimg=1
 /vendor               ext4     /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor";backup=1;wipeingui
-/vendor_image         emmc     /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor Image";backup=1;flashimg=1
-
-/logo                 emmc     /dev/block/platform/bootdevice/by-name/logo          
-/metadata             emmc     /dev/block/platform/bootdevice/by-name/metadata
-/nvcfg                ext4     /dev/block/platform/bootdevice/by-name/nvcfg         
-/nvdata               ext4     /dev/block/platform/bootdevice/by-name/nvdata        
-/nvram                emmc     /dev/block/platform/bootdevice/by-name/nvram         
-/para                 emmc     /dev/block/platform/bootdevice/by-name/para          flags=display="Para";backup=1
-/persistent           emmc     /dev/block/platform/bootdevice/by-name/frp 
-/proinfo              emmc     /dev/block/platform/bootdevice/by-name/proinfo       
-/protect_f            ext4     /dev/block/platform/bootdevice/by-name/protect1      
-/protect_s            ext4     /dev/block/platform/bootdevice/by-name/protect2     
-/tee1                 emmc     /dev/block/platform/bootdevice/by-name/tee1         
-/tee2                 emmc     /dev/block/platform/bootdevice/by-name/tee2         
-/efuse                emmc     /dev/block/platform/bootdevice/by-name/efuse         
+/vendor_image         emmc     /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor Image";backup=1;flashimg=1       
+/para                 emmc     /dev/block/platform/bootdevice/by-name/para          flags=display="Para";backup=1       
 /seccfg               emmc     /dev/block/platform/bootdevice/by-name/seccfg        flags=display="Seccfg";backup=1        
 /boot_para            emmc     /dev/block/platform/bootdevice/by-name/boot_para     flags=display="Boot para";backup=1
-
-/keystore		          emmc	   /dev/block/platform/bootdevice/by-name/keystore		  
-/oemkeystore		      emmc	   /dev/block/platform/bootdevice/by-name/oemkeystore	  
-
+ 
 /external_sd      auto     /dev/block/mmcblk1p1  /dev/block/mmcblk1            flags=display="external_sd";storage;wipeingui;removable;fsflags="utf8"
 /usb-otg          auto     /dev/block/sda1  /dev/block/sda                     flags=display="usb-otg";storage;wipeingui;removable;fsflags="utf8"
