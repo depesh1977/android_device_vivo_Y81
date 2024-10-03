@@ -26,6 +26,10 @@ TARGET_USES_64_BIT_BINDER := true
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := PD1732F_EX 
 
+# MTK Hardware
+BOARD_HAS_MTK_HARDWARE := true
+MTK_HARDWARE := true
+
 # Display
 TARGET_SCREEN_DENSITY := 320
 
@@ -85,18 +89,21 @@ DEVICE_SCREEN_HEIGHT := 1520
 
 # TWRP Configuration
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBA_8888"
-RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TW_THEME := portrait_hdpi
 TW_INPUT_BLACKLIST := "hbtp_vm"
 RECOVERY_SDCARD_ON_DATA := true
-TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.usb0/lun.0/file
 TW_NO_SCREEN_BLANK := true
+TW_FLASH_FROM_STORAGE := true
+TW_SCREEN_BLANK_ON_BOOT := true
 BOARD_SUPPRESS_SECURE_ERASE := true
-TW_EXTRA_LANGUAGES := false
 TW_DEFAULT_LANGUAGE := ru
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "sdcard"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 
 # Crypto
@@ -112,7 +119,6 @@ TARGET_USES_MKE2FS := true
 TW_INCLUDE_NTFS_3G := true
 
 # Storage
-TW_HAS_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
