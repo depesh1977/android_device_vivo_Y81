@@ -39,7 +39,16 @@ on boot
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     mount functionfs adb /dev/usb-ffs/adb uid=2000,gid=2000
 
-on property:sys.usb.config=none
+    write /sys/class/android_usb/android0/f_mtp/cpu_mask 0xF0
+
+    chmod 0664 /sys/class/android_usb/android0/iSerial
+    chown root system /sys/class/android_usb/android0/iSerial
+
+on property:ro.boot.usbcontroller=*
+    setprop sys.usb.controller ${ro.boot.usbcontroller}
+
+on property:sys.usb.config=none && property:sys.usb.configfs=1
+
     write /config/usb_gadget/g1/UDC "none"
     stop adbd
     setprop sys.usb.ffs.ready 0
@@ -48,7 +57,10 @@ on property:sys.usb.config=none
     write /config/usb_gadget/g1/bDeviceProtocol 0
     setprop sys.usb.state ${sys.usb.config}
 
-on property:sys.usb.config=adb
+    on property:init.svc.adbd=stopped
+    setprop sys.usb.ffs.ready 0
+
+on property:sys.usb.config=adb && property:sys.usb.configfs=1
     start adbd
 
   on property:sys.usb.ffs.ready=1 && property:sys.usb.config=adb && property:sys.usb.configfs=1
@@ -60,7 +72,7 @@ on property:sys.usb.config=adb
       write /config/usb_gadget/g1/UDC ${sys.usb.controller}
       setprop sys.usb.state ${sys.usb.config}
 
-  on property:sys.usb.config=mtp,adb
+  on property:sys.usb.config=mtp,adb && property:sys.usb.configfs=1
       start adbd
 
   on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mtp,adb && property:sys.usb.configfs=1
