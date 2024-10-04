@@ -117,7 +117,7 @@ TW_INCLUDE_NTFS_3G := true
 
 # Storage
 TW_HAS_MTP := true
-TW_MTP_DEVICE := /dev/mtp_usb
+TW_MTP_DEVICE := /dev/f_mtp 
 TW_DEFAULT_EXTERNAL_STORAGE := true
 TW_NO_USB_STORAGE := true
 
