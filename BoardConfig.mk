@@ -117,8 +117,5 @@ TW_INCLUDE_NTFS_3G := true
 
 # Storage
 TW_HAS_MTP := true
-TW_MTP_DEVICE := /dev/usb_ffs 
-TW_DEFAULT_EXTERNAL_STORAGE := true
-TW_NO_USB_STORAGE := true
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
