@@ -95,6 +95,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_USE_TOOLBOX := true
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/config/usb_gadget/g1/functions/mass_storage.usb0/lun.%d/file"
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone0/temp
 TW_NO_SCREEN_BLANK := true
 TW_SCREEN_BLANK_ON_BOOT := true
 BOARD_SUPPRESS_SECURE_ERASE := true
