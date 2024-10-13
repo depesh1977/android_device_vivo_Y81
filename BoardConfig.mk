@@ -113,7 +113,9 @@ TARGET_USES_MKE2FS := true
 TW_INCLUDE_NTFS_3G := true
 
 # Storage
-TW_HAS_MTP := true
-TW_MTP_DEVICE := /dev/mtp_usb
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 
 TW_DEVICE_VERSION=$(shell date '+%Y%m%d') by for Vivo Y81 1808
