@@ -596,6 +596,15 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+    	<name>vendor.vivo.hardware.light</name>
+    	<transport>hwbinder</transport>
+    	<version>1.0</version>
+    	<interface>
+    		<name>ILight</name>
+    		<instance>default</instance>
+    	</interface>
+    </hal>
     <sepolicy>
         <version>27.0</version>
     </sepolicy>
