@@ -3,6 +3,6 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_PD1732F_EX.mk
+    $(LOCAL_DIR)/pb_PD1732F_EX.mk
 
 
