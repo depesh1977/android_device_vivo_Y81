@@ -10,7 +10,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 $(call inherit-product, vendor/pb/config/common.mk)
 
 PRODUCT_DEVICE := PD1732F_EX
-PRODUCT_NAME := pb_PD1732F_EX
+PRODUCT_NAME := omni_PD1732F_EX
 PRODUCT_BRAND := vivo
 PRODUCT_MODEL := PD1732F_EX
 PRODUCT_MANUFACTURER := vivo
